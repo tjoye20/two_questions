@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def new
     if current_user
-      redirect_to new_request_path, notice: 'Welcome ' + current_user.display_name + '!'
+      redirect_to profiles_path, notice: 'Welcome ' + current_user.display_name + '!'
     end
   end
 

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     redirect_to new_session_path if params[:denied] 
     find_or_create_user
     session[:user_uuid] = @user.uuid
-    redirect_to users_path, notice: "You're signed in!"
+    redirect_to new_user_profile_path(@user.uuid), notice: "You're signed in!"
   end
 
   private
