@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_042147) do
+ActiveRecord::Schema.define(version: 2019_05_05_043540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "uuid", null: false
+    t.bigint "user_id", null: false
+    t.integer "gender", null: false
+    t.integer "gender_seeking", null: false
+    t.text "bio", null: false
+    t.integer "race", null: false
+    t.string "location", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.text "images", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["uuid"], name: "index_profiles_on_uuid"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "uuid", null: false
@@ -27,4 +44,5 @@ ActiveRecord::Schema.define(version: 2019_05_05_042147) do
     t.index ["uuid"], name: "index_users_on_uuid"
   end
 
+  add_foreign_key "profiles", "users"
 end
