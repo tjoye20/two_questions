@@ -6,6 +6,6 @@ class Profile < ApplicationRecord
                         :first_name, :last_name
   validates_uniqueness_of :uuid 
 
-  enum gender: { male: 0, female: 1, 'transgender-male': 2, 'transgender-female': 3, 'non-binary': 4 }
+  enum gender: { man: 0, woman: 1, 'non-binary': 3 }
 
 end
