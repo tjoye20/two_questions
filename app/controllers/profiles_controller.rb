@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_user
   before_action :set_profile, only: [:edit, :update]
 
   def index
@@ -11,18 +10,14 @@ class ProfilesController < ApplicationController
   end 
 
   def create
-    @profile = Profile.new(profile_params.merge({user_id: current_user.id}))
+    profile = Profile.new(profile_params.merge({user_id: current_user.id}))
 
-    if @profile.save
-      redirect_to user_profile_path(@profile), success: 'Profile successfully created!'
+    if profile.save
+      redirect_to user_profile_path(user_id: current_user.uuid, id: profile.uuid), success: 'Profile successfully created!'
     else
-      redirect_to new_profile_path(current_user.uuid), alert: "Error saving profile: #{@profile.errors.full_messages}"
+      redirect_to new_user_profile_path(current_user.uuid), alert: "Error saving profile: #{profile.errors.full_messages}"
     end 
   end  
-
-  def update
-
-  end 
 
   private
 
@@ -33,8 +28,7 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(
       :gender, :gender_seeking, :bio, 
-      :race, :location, :first_name, 
-      :last_name
+      :race, :location
     )
   end 
 end

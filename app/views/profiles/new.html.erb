@@ -3,64 +3,122 @@
     <div class="col s12">
       <%= form_for @profile, url: { action: 'create' } do |f| %>
         <div class="row">
-          <div class="file-field input-field">
-            <div class="btn blue">
-              <span>File</span>
-              <%= f.file_field :file, accept: '.pdf' %>
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" required>
-            </div>
-          </div> 
-        </div>
-        <div class="row">
           <div class="input-field col s12">
-            <%= f.email_field :email, required: true %>
-            <%= f.label :email, "Resume holder's email address" %>
+            <%= f.label :bio, "Bio:" %>
+            <%= f.text_field :bio, required: true %>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <%= f.text_field :roles, required: true, 'data-length': '65' %>
-            <%= f.label :roles, "What roles are you applying for?" %>
+            <%= f.label :location, "Zipcode:" %>
+            <%= f.text_field :location, required: true %>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <%= f.text_field :summary, required: true, 'data-length': '100' %>
-            <%= f.label :summary, "Why should you be referred?" %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <p>Is this your resume?</p>
+            <%= f.label :gender, "Gender:" %>
              <span>
-              <label for="false">
-                <input id="false" name="resume[user_resume]" type="radio" value="false" required/>
-                <span>No, this is not my resume.</span>
+              <label for="profile">
+                <input id="profile" name="profile[gender]" type="radio" value="man" required/>
+                <span>I'm a man</span>
               </label>
             </span>
             <span>
-              <label for="true">
-                <input id="true" name="resume[user_resume]" type="radio" value="true" required/>
-                <span>Yes, this is my resume.</span>
+              <label for="profile">
+                <input id="profile" name="profile[gender]" type="radio" value="false" required/>
+                <span>I'm a woman</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[gender]" type="radio" value="non-binary" required/>
+                <span>I'm non-binary</span>
+              </label>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.label :gender_seeking, "Gender seeking:" %>
+             <span>
+              <label for="profile">
+                <input id="profile" name="profile[gender_seeking]" type="radio" value="man" required/>
+                <span>Men</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[gender_seeking]" type="radio" value="woman" required/>
+                <span>Women</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[gender_seeking]" type="radio" value="both" required/>
+                <span>Both</span>
+              </label>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.label :race, "I identify my ethnicity as:" %>
+             <span>
+              <label for="profile">
+                <input id="profile" name="profile[race]" type="radio" value="asian" required/>
+                <span>Asian</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[race]" type="radio" value="black/african" required/>
+                <span>Black/African</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[race]" type="radio" value="caucasian" required/>
+                <span>Caucasian</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[race]" type="radio" value="hispanic/latino" required/>
+                <span>Hispanic/Latino</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[race]" type="radio" value="native american" required/>
+                <span>Native American</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[race]" type="radio" value="pacific islander" required/>
+                <span>Pacific Islander</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[race]" type="radio" value="mixed race" required/>
+                <span>Mixed race</span>
+              </label>
+            </span>
+            <span>
+              <label for="profile">
+                <input id="profile" name="profile[race]" type="radio" placeholder="Other" />
               </label>
             </span>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12 center">
-             <button class="btn waves-effect waves-light blue" type="submit" name="action">Upload
-              <i class="material-icons right">file_upload</i>
+            <button class="btn waves-effect waves-light blue" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
             </button>
           </div>
         </div>
       <% end %>
     </div>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('input#resume_summary, input#resume_roles').characterCounter();
-  });
-</script>

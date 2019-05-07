@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 2019_05_05_043540) do
     t.text "bio", null: false
     t.integer "race", null: false
     t.string "location", null: false
-    t.string "first_name", null: false
-    t.string "last_name", null: false
     t.text "images", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
