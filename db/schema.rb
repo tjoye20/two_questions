@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_08_005420) do
+ActiveRecord::Schema.define(version: 2019_05_08_024105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,30 @@ ActiveRecord::Schema.define(version: 2019_05_08_005420) do
     t.index ["uuid"], name: "index_questions_on_uuid"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "profile_id", null: false
+    t.string "uuid", null: false
+    t.string "state", default: "new", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_requests_on_profile_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
+    t.index ["uuid"], name: "index_requests_on_uuid"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "question_id", null: false
+    t.text "body", null: false
+    t.string "uuid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_responses_on_question_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
+    t.index ["uuid"], name: "index_responses_on_uuid"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "uuid", null: false
     t.string "email", null: false
@@ -65,6 +89,10 @@ ActiveRecord::Schema.define(version: 2019_05_08_005420) do
 
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "profiles"
+  add_foreign_key "requests", "profiles"
+  add_foreign_key "requests", "users"
+  add_foreign_key "responses", "questions"
+  add_foreign_key "responses", "users"
   add_foreign_key "views", "profiles"
   add_foreign_key "views", "users"
 end

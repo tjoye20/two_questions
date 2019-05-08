@@ -5,11 +5,11 @@ class View < ApplicationRecord
   validates_presence_of :state
 
   state_machine :state do
-    event :rejected do
+    event :reject do
       transition any => :rejected
     end
 
-    event :interested do 
+    event :approve do 
       transition any => :interested
     end 
   end 
