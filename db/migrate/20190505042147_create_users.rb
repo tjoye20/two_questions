@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :uuid, null: false, index: true
       t.string :email, null: false, index: true
       t.text :image
-      t.text :display_name
+      t.string :display_name
       t.string :state, default: :active 
 
       t.timestamps

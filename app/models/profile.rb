@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
   belongs_to :user
+  has_many :questions
 
   validates_presence_of :uuid, :gender, :gender_seeking, 
                         :bio, :race, :location
