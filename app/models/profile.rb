@@ -1,7 +1,9 @@
 class Profile < ApplicationRecord
   belongs_to :user
   has_many :questions
+  has_many :views
 
+  validate :create_uuid, on: :create
   validates_presence_of :uuid, :gender, :gender_seeking, 
                         :bio, :race, :location
   validates_uniqueness_of :uuid 

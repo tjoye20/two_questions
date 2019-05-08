@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_014203) do
+ActiveRecord::Schema.define(version: 2019_05_08_005420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_014203) do
     t.string "uuid", null: false
     t.string "email", null: false
     t.text "image"
-    t.text "display_name"
+    t.string "display_name"
     t.string "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 2019_05_07_014203) do
     t.index ["uuid"], name: "index_users_on_uuid"
   end
 
+  create_table "views", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "user_id", null: false
+    t.string "state", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_views_on_profile_id"
+    t.index ["user_id"], name: "index_views_on_user_id"
+  end
+
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "profiles"
+  add_foreign_key "views", "profiles"
+  add_foreign_key "views", "users"
 end

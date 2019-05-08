@@ -1,8 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  validate :create_uuid, on: :create
-
   private
 
   def create_uuid
