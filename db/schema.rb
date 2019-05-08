@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_024105) do
   create_table "questions", force: :cascade do |t|
     t.bigint "profile_id", null: false
     t.string "body", null: false
-    t.string "state", null: false
+    t.string "state", default: "active", null: false
     t.string "uuid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
