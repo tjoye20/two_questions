@@ -2,11 +2,11 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
 
   def index
-    @profiles = Profile.includes(:user, :question).where(gender: [current_user.profile.gender_seeking])
+    @profiles = Profile.includes(:user, :questions).where(gender: [current_user.profile.gender_seeking_before_type_cast])
   end 
 
   def show
-    @profile = Profile.includes(:question).find_by_uuid(params[:uuid])
+    @profile = Profile.includes(:questions).find_by_uuid(params[:uuid])
   end 
 
   def create
