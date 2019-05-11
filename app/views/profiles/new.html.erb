@@ -1,7 +1,7 @@
 <div class="row">
   <h4 class="center">Create Profile</h4>
     <div class="col s12">
-      <%= form_for @profile, url: { action: 'create' } do |f| %>
+      <%= form_for Profile.new, url: { action: 'create' } do |f| %>
         <div class="row">
           <div class="input-field col s12">
             <%= f.label :bio, "Bio:" %>
@@ -42,13 +42,13 @@
             <%= f.label :gender_seeking, "Gender seeking:" %>
              <span>
               <label for="profile">
-                <input id="profile" name="profile[gender_seeking]" type="radio" value="man" required/>
+                <input id="profile" name="profile[gender_seeking]" type="radio" value="men" required/>
                 <span>Men</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[gender_seeking]" type="radio" value="woman" required/>
+                <input id="profile" name="profile[gender_seeking]" type="radio" value="women" required/>
                 <span>Women</span>
               </label>
             </span>

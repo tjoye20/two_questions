@@ -1,0 +1,20 @@
+<div class="row">
+  <h4 class="center">Create Profile</h4>
+    <div class="col s12">
+      <%= form_for @questions.new, url: { action: 'create' } do |f| %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= f.label :body, "Question:" %>
+            <%= f.text_field :body, required: true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 center">
+            <button class="btn waves-effect waves-light blue" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
