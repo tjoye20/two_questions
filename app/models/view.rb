@@ -4,7 +4,7 @@ class View < ApplicationRecord
 
   validates_presence_of :state
 
-  state_machine :state do
+  state_machine :state, initial: :unseen do
     event :reject do
       transition any => :rejected
     end

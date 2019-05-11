@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :request do
-    user { nil }
-    profile { nil }
-    state { "MyString" }
+    association :user
+    association :profile
   end
 end

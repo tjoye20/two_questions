@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :response do
-    user { nil }
-    question { nil }
+    association :user
+    association :question
     body { "MyText" }
   end
 end

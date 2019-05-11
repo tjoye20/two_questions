@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :question do
-    profile { nil }
+    association :profile
     body { "MyString" }
     state { "MyString" }
     uuid { "MyString" }
