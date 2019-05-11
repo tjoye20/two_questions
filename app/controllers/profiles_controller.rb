@@ -2,22 +2,32 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
 
   def index
-    @profiles = Profile.includes(:user).where(gender: [current_user.profile.gender_seeking])
+    @profiles = Profile.includes(:user, :question).where(gender: [current_user.profile.gender_seeking])
   end 
 
-  def new
-    @profile = Profile.new(user_id: current_user.id)
+  def show
+    @profile = Profile.includes(:question).find_by_uuid(params[:uuid])
   end 
 
   def create
     profile = Profile.new(profile_params.merge({user_id: current_user.id}))
-
+    
     if profile.save
-      redirect_to user_profile_path(user_id: current_user.uuid, id: profile.uuid), success: 'Profile successfully created!'
+      redirect_to new_profile_questions_path(profile.uuid), notice: 'Profile successfully created.'
     else
-      redirect_to new_user_profile_path(current_user.uuid), alert: "Error saving profile: #{profile.errors.full_messages}"
+      flash[:alert] = profile.error
+      redirect_back(fallback_location: root_path)
     end 
-  end  
+  end 
+
+  def update
+    if @profile.update(profile_params)
+      redirect_to root_path, notice: 'Profile successfully updated.'
+    else
+      flash[:alert] = @profile.error
+      redirect_back(fallback_location: root_path)
+    end 
+  end 
 
   private
 
