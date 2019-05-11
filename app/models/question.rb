@@ -5,6 +5,12 @@ class Question < ApplicationRecord
   validates_presence_of :uuid, :body, :state
   validates_uniqueness_of :uuid 
 
+  state_machine :state, initial: :active do 
+    event :archive do 
+      transition any => :archived
+    end 
+  end 
+
   def user
     self.profile.user
   end 
