@@ -31,7 +31,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'materialize-sass', '~> 1.0.0'
+gem 'jquery-rails'
 
 gem 'omniauth-google-oauth2'
 gem 'state_machines-activerecord'
