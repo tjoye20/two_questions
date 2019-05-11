@@ -1,0 +1,9 @@
+<% if flash.try(:alert) %>
+  <script type="text/javascript">
+    M.toast({html: "<%= flash[:alert].class.name == 'Array' ? flash[:alert].join(', ').html_safe : flash[:alert].html_safe %>", displayLength: 4500, classes: "red"})
+  </script>
+<% elsif flash.try(:notice) %>
+  <script type="text/javascript">
+    M.toast({html: "<%= flash[:notice].class.name == 'Array' ? flash[:notice].join(', ').html_safe : flash[:notice].html_safe %>", displayLength: 4500, classes: "green"})
+  </script>
+<% end %>
