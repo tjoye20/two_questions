@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'materialize-sass', '~> 1.0.0'
 gem 'jquery-rails'
-
+gem "aws-sdk-s3"
 gem 'omniauth-google-oauth2'
 gem 'state_machines-activerecord'
 
