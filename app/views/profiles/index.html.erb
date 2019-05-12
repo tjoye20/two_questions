@@ -1,0 +1,34 @@
+<div class="carousel">
+  <% @profiles.each do |profile| %>
+    <a class="carousel-item" data-uuid="<%=profile.uuid%>" href="<%= profile_path(profile.uuid)%>"><img src="https://lorempixel.com/250/250/nature/1"></a>
+  <% end %>
+  <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
+  <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
+  <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
+  <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+</div>
+<div class="center">
+  <a class="waves-effect waves-light btn" onclick="$('.carousel').carousel('next');updateView('rejected')">Not interested</a>
+  <a class="waves-effect waves-light btn" onclick="$('.carousel').carousel('next');updateView('approved')">Interested</a>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.carousel').carousel({numVisible: 3});
+  });
+
+  function updateView(state) {
+    var data = {
+      profile_id: $('a.carousel-item.active').attr('data-uuid'),
+      state: state
+    };
+    $.ajax({ url: '/views',
+      type: 'POST',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      data: data,
+      error: function(response) {
+        M.toast({html: response.responseText, displayLength: 4500, classes: "red"})
+      }
+    });
+  }
+</script>
