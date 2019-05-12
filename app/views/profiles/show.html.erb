@@ -1,0 +1,18 @@
+<div class="carousel">
+  <% @profile.images.each do |image| %>
+    <%= image_tag image, class: 'carousel-item' %>
+  <% end %>
+</div><br>
+<div class="center">
+  <a class="waves-effect waves-light btn" onclick="$('.carousel').carousel('next')">
+    <i class="material-icons">fast_rewind</i>
+  </a>
+  <a class="waves-effect waves-light btn" onclick="$('.carousel').carousel('next');">
+    <i class="material-icons">fast_forward</i>
+  </a>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.carousel').carousel({duration: 320});
+  });
+</script>

@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
   end 
 
   def show
-    @profile = Profile.includes(:questions).find_by_uuid(params[:uuid])
+    @profile = Profile.includes(:questions).with_attached_images.find_by_uuid(params[:id])
   end 
 
   def create
