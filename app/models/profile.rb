@@ -1,8 +1,8 @@
 class Profile < ApplicationRecord
   belongs_to :user
-  has_many :questions
-  has_many :views
-  has_many :requests
+  has_many :questions, dependent: :destroy
+  has_many :views, dependent: :destroy
+  has_many :requests, dependent: :destroy
 
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :gender, :gender_seeking, 

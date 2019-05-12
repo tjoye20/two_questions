@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
 
   def index
-    @profiles = Profile.includes(:user, :questions).where(gender: [current_user.profile.gender_seeking_before_type_cast])
+    gender_seeking = current_user.profile.gender_seeking_before_type_cast == 2 ? ['man', 'woman'] : current_user.profile.gender_seeking_before_type_cast
+    @profiles = Profile.includes(:user, :questions).where(gender: gender_seeking)
   end 
 
   def show

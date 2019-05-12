@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/profiles/:uuid/questions/new', to: 'questions#new', as: :new_profile_questions
   post '/profiles/:uuid/questions', to: 'questions#create'
   delete '/profiles/:uuid/questions/:id', to: 'questions#destroy', as: :delete_profile_question
+  resources :views, only: :create
 
   resources :sessions, only: [:new, :destroy]
   resources :profiles, only: [:index, :show] do 

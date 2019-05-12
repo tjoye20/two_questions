@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_one :profile
-  has_many :requests
+  has_one :profile, dependent: :destroy
+  has_many :requests, dependent: :destroy
 
   validate :create_uuid, on: :create
   validates_presence_of :email, :uuid, :display_name

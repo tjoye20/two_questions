@@ -1,5 +1,5 @@
 <div class="row">
-  <h4 class="center">Create Profile</h4>
+  <h4 class="center blue-text">Create Profile</h4>
     <div class="col s12">
       <%= form_for Profile.new, url: { action: 'create' } do |f| %>
         <div class="row">
@@ -16,22 +16,22 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <%= f.label :gender, "Gender:" %>
+            <%= f.label :gender, "Gender:" %><br><br>
              <span>
               <label for="profile">
-                <input id="profile" name="profile[gender]" type="radio" value="man" required/>
+                <input name="profile[gender]" type="radio" value="man" required/>
                 <span>I'm a man</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[gender]" type="radio" value="false" required/>
+                <input name="profile[gender]" type="radio" value="false" required/>
                 <span>I'm a woman</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[gender]" type="radio" value="non-binary" required/>
+                <input name="profile[gender]" type="radio" value="non-binary" required/>
                 <span>I'm non-binary</span>
               </label>
             </span>
@@ -39,22 +39,22 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <%= f.label :gender_seeking, "Gender seeking:" %>
+            <%= f.label :gender_seeking, "Gender seeking:" %><br><br>
              <span>
               <label for="profile">
-                <input id="profile" name="profile[gender_seeking]" type="radio" value="men" required/>
+                <input name="profile[gender_seeking]" type="radio" value="men" required/>
                 <span>Men</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[gender_seeking]" type="radio" value="women" required/>
+                <input name="profile[gender_seeking]" type="radio" value="women" required/>
                 <span>Women</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[gender_seeking]" type="radio" value="both" required/>
+                <input name="profile[gender_seeking]" type="radio" value="both" required/>
                 <span>Both</span>
               </label>
             </span>
@@ -62,52 +62,52 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <%= f.label :race, "I identify my ethnicity as:" %>
+            <%= f.label :race, "I identify my ethnicity as:" %><br><br>
              <span>
               <label for="profile">
-                <input id="profile" name="profile[race]" type="radio" value="asian" required/>
+                <input name="profile[race]" type="radio" value="asian" required/>
                 <span>Asian</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[race]" type="radio" value="black/african" required/>
+                <input name="profile[race]" type="radio" value="black/african" required/>
                 <span>Black/African</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[race]" type="radio" value="caucasian" required/>
+                <input name="profile[race]" type="radio" value="caucasian" required/>
                 <span>Caucasian</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[race]" type="radio" value="hispanic/latino" required/>
+                <input name="profile[race]" type="radio" value="hispanic/latino" required/>
                 <span>Hispanic/Latino</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[race]" type="radio" value="native american" required/>
+                <input name="profile[race]" type="radio" value="native american" required/>
                 <span>Native American</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[race]" type="radio" value="pacific islander" required/>
+                <input name="profile[race]" type="radio" value="pacific islander" required/>
                 <span>Pacific Islander</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[race]" type="radio" value="mixed race" required/>
+                <input name="profile[race]" type="radio" value="mixed race" required/>
                 <span>Mixed race</span>
               </label>
             </span>
             <span>
               <label for="profile">
-                <input id="profile" name="profile[race]" type="radio" placeholder="Other" />
+                <input name="profile[race]" type="radio" placeholder="Other" />
               </label>
             </span>
           </div>
