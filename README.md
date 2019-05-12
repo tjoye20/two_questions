@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+```
+#Add migrations to create files to atttach
+rails active_storage:install
+```

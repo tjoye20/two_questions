@@ -8,7 +8,6 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.text :bio, null:false
       t.integer :race, null:false
       t.string :location, null:false
-      t.text :images, array: true, default: []
 
       t.timestamps
     end

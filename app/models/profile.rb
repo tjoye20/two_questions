@@ -4,6 +4,8 @@ class Profile < ApplicationRecord
   has_many :views, dependent: :destroy
   has_many :requests, dependent: :destroy
 
+  has_many_attached :images
+
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :gender, :gender_seeking, 
                         :bio, :race, :location

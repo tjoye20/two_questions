@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
   private
 
   def render_error_view
-    flash[:alert] = question.error
+    flash[:alert] = question.errors.full_messages.join(', ')
     redirect_back(fallback_location: root_path)
   end 
 
