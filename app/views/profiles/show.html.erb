@@ -1,4 +1,5 @@
 <div class="carousel">
+  <h4 class="center black-text"><%=@profile.user.display_name.split(' ')[0]%></h4>
   <% @profile.images.each do |image| %>
     <%= image_tag image, class: 'carousel-item' %>
   <% end %>

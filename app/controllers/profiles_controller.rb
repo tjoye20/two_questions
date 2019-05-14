@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 
   def index
     gender_seeking = current_user.profile.gender_seeking_before_type_cast == 2 ? ['man', 'woman'] : current_user.profile.gender_seeking_before_type_cast
-    @profiles = Profile.includes(:user, :questions).where(gender: gender_seeking).with_attached_images
+    @profiles = Profile.includes(:user).where(gender: gender_seeking).with_attached_images
   end 
 
   def show
