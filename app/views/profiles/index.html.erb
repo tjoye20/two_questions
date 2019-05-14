@@ -1,32 +1,36 @@
-<div class="carousel">
-  <% @profiles.each do |profile| %>
-      <a class="carousel-item" data-uuid="<%=profile.uuid%>" href="<%= profile_path(profile.uuid)%>">
-        <%= image_tag profile.images.first %>
-      </a>
-  <% end %>
-</div>
-<div class="center">
-  <a class="waves-effect waves-light btn" onclick="updateView('rejected', $('a.carousel-item.active').attr('data-uuid'));$('.carousel').carousel('next')">Not interested</a>
-  <a class="waves-effect waves-light btn" onclick="updateView('approved', $('a.carousel-item.active').attr('data-uuid'));$('.carousel').carousel('next');">Interested</a>
-</div>
+<% if @profiles.empty? %>
+  <p>There are no profiles to view right now. Come back soon!</p>
+<% else %>
+  <div class="carousel">
+    <% @profiles.each do |profile| %>
+        <a class="carousel-item" data-uuid="<%=profile.uuid%>" href="<%= profile_path(profile.uuid)%>">
+          <%= image_tag profile.images.first %>
+        </a>
+    <% end %>
+  </div>
+  <div class="center">
+    <a class="waves-effect waves-light btn" onclick="updateView('rejected', $('a.carousel-item.active').attr('data-uuid'));$('.carousel').carousel('next')">Not interested</a>
+    <a class="waves-effect waves-light btn" onclick="updateView('approved', $('a.carousel-item.active').attr('data-uuid'));$('.carousel').carousel('next');">Interested</a>
+  </div>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.carousel').carousel({numVisible: 3});
-  });
-
-  function updateView(state, profile_uuid) {
-    var data = {
-      profile_id: profile_uuid,
-      state: state
-    };
-    $.ajax({ url: '/views',
-      type: 'POST',
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      data: data,
-      error: function(response) {
-        M.toast({html: response.responseText, displayLength: 4500, classes: "red"})
-      }
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.carousel').carousel({numVisible: 3});
     });
-  }
-</script>
+
+    function updateView(state, profile_uuid) {
+      var data = {
+        profile_id: profile_uuid,
+        state: state
+      };
+      $.ajax({ url: '/views',
+        type: 'POST',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: data,
+        error: function(response) {
+          M.toast({html: response.responseText, displayLength: 4500, classes: "red"})
+        }
+      });
+    }
+  </script>
+<% end %>
