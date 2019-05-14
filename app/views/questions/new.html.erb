@@ -1,11 +1,17 @@
 <div class="row">
   <h4 class="center">Create Profile</h4>
     <div class="col s12">
-      <%= form_for @questions.new, url: { action: 'create' } do |f| %>
+      <%= form_tag "/profiles/#{@profile.uuid}/questions", url: { action: 'create' } do |f| %>
         <div class="row">
           <div class="input-field col s12">
-            <%= f.label :body, "Question:" %>
-            <%= f.text_field :body, required: true %>
+            <%= label_tag "Question 1:" %>
+            <%= text_field_tag :question1, nil, required: true %>
+          </div>
+        </div>
+         <div class="row">
+          <div class="input-field col s12">
+            <%= label_tag "Question 2:" %>
+            <%= text_field_tag :question2, nil, required: true %>
           </div>
         </div>
         <div class="row">
