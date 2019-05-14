@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
+  before_action :check_if_profile_and_questions_exist, only: [:index, :show]
 
   def index
     gender_seeking = current_user.profile.gender_seeking_before_type_cast == 2 ? ['man', 'woman'] : current_user.profile.gender_seeking_before_type_cast
@@ -30,7 +31,7 @@ class ProfilesController < ApplicationController
     end 
   end 
 
-  private
+  private 
 
   def set_profile
     @profile = current_user.profile

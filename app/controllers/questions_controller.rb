@@ -1,43 +1,32 @@
 class QuestionsController < ApplicationController
   before_action :set_profile
-  before_action :set_questions, only: :new
+  before_action :check_if_profile_and_questions_exist, only: :new
+  before_action :keep_user_from_creating_new_questions, only: :new
 
   def create
-    question = @profile.questions.new(question_params)
+    @profile.create_questions(question_params)
 
-    if question.save
-      redirect_to new_profile_questions_path(@profile.uuid), notice: 'Question successfully saved.'
-    else
-      render_error_view
-    end 
-  end 
-
-  def destroy
-    question = @profile.questions.find_by_uuid(params[:id])
-    
-    if question.archive
-      redirect_to root_path, notice: 'Question has been archived.'
-    else
-      render_error_view
+    if @profile.questions.present?
+      redirect_to profiles_path, notice: 'Questions successfully saved.'
+    else    
+      flash[:alert] = 'Questions not successfully saved. Please try again.'
+      redirect_back(fallback_location: root_path)
     end 
   end 
 
   private
 
-  def render_error_view
-    flash[:alert] = question.errors.full_messages.join(', ')
-    redirect_back(fallback_location: root_path)
+  def keep_user_from_creating_new_questions
+    unless @profile.questions.empty?
+      redirect_to profiles_path
+    end
   end 
 
   def set_profile
-   @profile = Profile.find_by_uuid(params[:uuid])
-  end 
-
-  def set_questions
-    @questions = @profile.questions
+   @profile = current_user.profile
   end 
 
   def question_params
-    params.require(:question).permit(:body)
+    params.permit(:question1, :question2)
   end 
 end
