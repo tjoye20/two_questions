@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     if !current_user.profile 
       redirect_to new_user_profile_path(current_user.uuid), alert: 'Please create your profile.'
     elsif current_user.profile.questions.empty?
-      redirect_to new_profile_questions_path(current_user.profile.uuid), alert: 'Please create your profile questions.'
+      redirect_to new_profile_question_path(current_user.profile.uuid), alert: 'Please create your profile questions.'
     end
   end
 

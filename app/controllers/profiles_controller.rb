@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
     profile = Profile.new(profile_params.merge({user_id: current_user.id}))
     
     if profile.save
-      redirect_to new_profile_questions_path(profile.uuid), notice: 'Profile successfully created.'
+      redirect_to new_profile_question_path(profile.uuid), notice: 'Profile successfully created.'
     else
       flash[:alert] = profile.errors.full_messages.join(', ')
       redirect_back(fallback_location: root_path)

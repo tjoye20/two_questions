@@ -1,6 +1,5 @@
 class QuestionsController < ApplicationController
   before_action :set_profile
-  before_action :check_if_profile_and_questions_exist, only: :new
   before_action :keep_user_from_creating_new_questions, only: :new
 
   def create
