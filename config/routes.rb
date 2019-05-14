@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :destroy]
   resources :profiles, only: [:index, :show] do 
     resources :questions, only: [:new, :create]
+    resources :responses, only: :create
   end 
   
   resources :users, only: [:create] do 

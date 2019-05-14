@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.includes(:questions).with_attached_images.find_by_uuid(params[:id])
+    @questions = @profile.questions.pluck(:id, :body)
   end 
 
   def create
