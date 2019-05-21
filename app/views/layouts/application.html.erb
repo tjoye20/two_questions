@@ -14,7 +14,10 @@
   </head>
 
   <body>
+    <%= render 'layouts/partials/nav' %>
     <%= render 'layouts/partials/alerts' %>
     <%= yield %>
+    <%= render 'layouts/partials/footer' %>
   </body>
+  <%= render 'layouts/partials/scripts' %>
 </html>
