@@ -8,20 +8,15 @@
 </div>
 <div class="row">
   <div class="col s12">
-    <div class="row">
-      <div class="input-field col s12">
-        <%= label_tag "Question 1:" %><br>
-        <p><%= @questions.first.body %></p>
-        <%= text_field_tag :response1, @questions.first.responses.first.body, disabled: true %>
+    <% @responses.each do |response| %>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= label_tag "Question:" %><br>
+          <p><%= response.question.body %></p>
+          <%= text_field_tag :response1, response.body, disabled: true %>
+        </div>
       </div>
-    </div>
-     <div class="row">
-      <div class="input-field col s12">
-        <%= label_tag "Question 2:" %><br>
-        <p><%= @questions.second.body %></p>
-        <%= text_field_tag :response2, @questions.second.responses.first.body, disabled: true %>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
 <div class="row">

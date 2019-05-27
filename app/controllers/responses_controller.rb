@@ -12,7 +12,7 @@ class ResponsesController < ApplicationController
   end 
 
   def show
-   @questions = Question.includes(:responses).where(responses: { user_id: @user.id })
+   @responses = Response.includes(:question).where(user_id: @user.id)
   end 
 
   private
