@@ -14,7 +14,7 @@
 </div>
 <div class="row">
   <div class="col s12">
-    <%= form_tag "/profiles/#{@profile.uuid}/responses", url: { action: 'create' } do |f| %>
+    <%= form_tag "/profiles/#{@profile.id}/requests", url: { action: 'create' } do |f| %>
         <div class="row">
           <div class="input-field col s12">
             <%= label_tag "Question 1:" %><br>
