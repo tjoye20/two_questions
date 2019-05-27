@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :questions, only: [:new, :create]
     resources :responses, only: :create
   end 
+
+  resources :responses, only: [:index, :show] 
   
   resources :users, only: [:create] do 
     resources :profiles, only: [:new, :edit, :create, :update]

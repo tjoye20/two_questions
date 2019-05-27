@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col s12">
+    <h3>Responses</h3>
+    <table class="highlight">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>      
+      <% @users.each do |user| %> 
+        <tr>
+          <td>
+            <%= image_tag user.image, size: '80x80' %>
+          </td>
+          <td>
+            <%= user.display_name.split(' ').first %>
+          </td>
+          <td>
+            <%= link_to 'View Response', response_path(user.uuid) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+</div>

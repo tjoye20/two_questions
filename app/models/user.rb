@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :profile, dependent: :destroy
+  has_many :questions, through: :profile
   has_many :requests, dependent: :destroy
   has_many :views, dependent: :destroy
 
