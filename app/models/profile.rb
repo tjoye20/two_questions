@@ -19,6 +19,10 @@ class Profile < ApplicationRecord
     other: 7 
   }
 
+  def user_submitted_response(user_id)
+    self.questions.first.responses.find_by(user_id: user_id).present?
+  end 
+
   def create_questions(question_params)
     self.questions << Question.new(body: question_params[:question1])
     self.questions << Question.new(body: question_params[:question2])

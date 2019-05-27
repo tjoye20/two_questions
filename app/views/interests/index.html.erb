@@ -6,6 +6,7 @@
       <tr>
         <th></th>
         <th>Name</th>
+        <th>Status</th>
         <th>Remove</th>
       </tr>
     </thead>
@@ -17,6 +18,13 @@
           </td>
           <td>
             <%= profile.user.display_name.split(' ').first %>
+          </td>
+          <td>
+            <% if profile.user_submitted_response(current_user.id) %>
+              <span>Response Submitted</span>
+            <% else %>
+              <%= link_to 'Submit Response', profile_path(profile.uuid) %>
+            <% end %>
           </td>
           <td>
             <a class="waves-effect waves-light" data-uuid="<%=profile.uuid%>" onclick="updateView(this, 'rejected', '<%= profile.uuid %>');"><i class="material-icons">delete</i></a>

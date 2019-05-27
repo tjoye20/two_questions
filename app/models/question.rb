@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :profile
+  has_many :responses
 
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :body, :state
