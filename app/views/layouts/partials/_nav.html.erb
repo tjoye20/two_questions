@@ -1,11 +1,14 @@
 <% if current_user %>
   <nav role="navigation" class="blue">
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">ReferU</a>
+      <a href="/" class="brand-logo">Two Questions</a>
       <a href="#" data-target="mobile-links" class="sidenav-trigger" onclick="$('.sidenav').sidenav('open');return false"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li>
-          <%=link_to 'Sign out', logout_path%>
+          <%= link_to 'Interests', interests_path %>
+        </li>
+        <li>
+          <%=link_to 'Sign out', logout_path %>
         </li>
       </ul>
     </div>
@@ -24,6 +27,9 @@
           <span class="black-text email"><%=current_user.email%></span>
         </a>
       </div>
+    </li>
+    <li>
+      <%= link_to 'Interests', interests_path %>
     </li>
     <li>
       <%=link_to 'Sign out', logout_path%>
