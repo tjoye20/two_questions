@@ -36,6 +36,7 @@ gem 'jquery-rails'
 gem "aws-sdk-s3"
 gem 'omniauth-google-oauth2'
 gem 'state_machines-activerecord'
+gem "interactor-rails", "~> 2.0"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
