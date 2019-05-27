@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col s12">
+    <div class="row">
+      <p>Responses from: <%= @profile_user.display_name.split(' ').first %> </p>
+      <%= image_tag @profile_user.image, size: '80x80' %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <% @request.questions.each do |question| %>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= label_tag "Question:" %><br>
+          <p><%= question.body %></p>
+          <%= text_field_tag :response1, question.responses.first.body, disabled: true %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <div class="row">
+      <div class="center">
+        <%= link_to 'Not Interested', "/profiles/#{@profile_user.profile.id}/requests?" + { state: 'rejected'}.to_param, method: :put, class: 'waves-effect waves-light btn red'  %>
+
+        
+        <a class="waves-effect waves-light btn" data-profile-id="<%= @profile_user.profile.id %>">Interested</a>
+      </div>
+    </div>
+  </div>
+</div>

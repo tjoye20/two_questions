@@ -1,6 +1,8 @@
 class Request < ApplicationRecord
   belongs_to :user
   belongs_to :profile
+  has_many :questions, through: :profile
+  has_many :responses, through: :profile
 
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :state 

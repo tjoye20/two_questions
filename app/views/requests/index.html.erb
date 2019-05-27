@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col s12">
-    <h3 class="center">Responses</h3>
+    <h3 class="center">Requests</h3>
     <table class="highlight">
       <thead>
       <tr>
@@ -19,7 +19,7 @@
             <%= user.display_name.split(' ').first %>
           </td>
           <td>
-            <%= link_to 'View Response', response_path(user.uuid) %>
+            <%= link_to 'View Request', request_path(user.uuid) %>
           </td>
         </tr>
       <% end %>
