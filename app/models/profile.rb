@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
   has_many :questions, dependent: :destroy
+  has_many :responses, through: :questions
   has_many :views, dependent: :destroy
   has_many :requests, dependent: :destroy
 

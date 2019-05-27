@@ -5,10 +5,20 @@ class UsersController < ApplicationController
     redirect_to new_session_path if params[:denied] 
     find_or_create_user
     session[:user_uuid] = @user.uuid
-    redirect_to new_user_profile_path(@user.uuid), notice: 'Welcome ' + @user.display_name + '!'
+    determine_login_path
   end
 
   private
+
+  def determine_login_path
+    notice_msg = 'Welcome ' + @user.display_name + '!'
+
+    if @user.profile 
+      redirect_to profiles_path, notice: notice_msg
+    else
+      redirect_to new_user_profile_path(@user.uuid), notice: notice_msg
+    end 
+  end 
 
   def find_or_create_user
     unless @user = User.find_by(email: auth_hash&.info&.email)
