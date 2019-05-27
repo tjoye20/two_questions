@@ -23,10 +23,9 @@
   <div class="col s12">
     <div class="row">
       <div class="center">
-        <%= link_to 'Not Interested', "/profiles/#{@profile_user.profile.id}/requests?" + { state: 'rejected'}.to_param, method: :put, class: 'waves-effect waves-light btn red'  %>
+        <%= link_to 'Not Interested', "/profiles/#{@profile_user.profile.id}/requests/#{@request.uuid}?" + { state: 'rejected'}.to_param, method: :put, class: 'waves-effect waves-light btn red'  %>
 
-        
-        <a class="waves-effect waves-light btn" data-profile-id="<%= @profile_user.profile.id %>">Interested</a>
+        <%= link_to 'Interested', "/profiles/#{@profile_user.profile.id}/requests/#{@request.uuid}?" + { state: 'approved'}.to_param, method: :put, class: 'waves-effect waves-light btn'  %>
       </div>
     </div>
   </div>

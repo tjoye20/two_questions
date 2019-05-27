@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: :update
   before_action :set_profile_user, only: :show
+  before_action :set_profile, only: :update 
 
   def index
     user_response_ids = current_user.requests.pluck(:user_id)
@@ -31,16 +32,27 @@ class RequestsController < ApplicationController
   end 
 
   def update
+    @request.update(state: requests_param[:state])
+
+    if requests_param[:state] == 'approved'
+      redirect_to profile_path(@profile.uuid), notice: 'Approved! Now submit your responses to their questions.'
+    else
+      redirect_to requests_path, notice: 'Rejected.'
+    end 
   end 
 
   private
 
   def set_profile_user
-    @profile_user = User.find_by_uuid(params[:id])
+    @profile_user = User.includes(:profile).find_by_uuid(params[:id])
+  end 
+
+  def set_profile
+    @profile = Profile.find(params[:profile_id])
   end 
 
   def set_request
-    @request = current_user.requests.find_by_profile_id(params[:profile_id])
+    @request = current_user.requests.find_by_uuid(params[:id])
   end 
 
   def requests_param
