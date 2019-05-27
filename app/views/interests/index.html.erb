@@ -14,7 +14,7 @@
       <% @profiles.each do |profile| %> 
         <tr class="profile-pictures">
           <td>
-            <%= image_tag profile.images.first, size: '80x80' %>
+            <%= image_tag profile.user.image, size: '80x80' %>
           </td>
           <td>
             <%= profile.user.display_name.split(' ').first %>
@@ -27,7 +27,7 @@
             <% end %>
           </td>
           <td>
-            <a class="waves-effect waves-light" data-uuid="<%=profile.uuid%>" onclick="updateView(this, 'rejected', '<%= profile.uuid %>');"><i class="material-icons">delete</i></a>
+            <a class="waves-effect waves-light" data-uuid="<%=profile.uuid%>" onclick="updateView(this, 'rejected', '<%= profile.uuid %>');"><i class="red-text material-icons">delete</i></a>
           </td>
         </tr>
       <% end %>
@@ -56,17 +56,21 @@
       profile_id: profile_uuid,
       state: state
     };
-    $.ajax({ url: '/views/' + profile_uuid,
-      type: 'PUT',
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      data: data,
-      success: function(data, status, xhr) {
-        removeProfile(this);
-        checkForRedirect();
-      },
-      error: function(response) {
-        M.toast({html: response.responseText, displayLength: 4500, classes: "red"})
-      }
-    });
+
+    var response = confirm('Are you sure you are no longer interested?');
+    if (response == true) {
+      $.ajax({ url: '/views/' + profile_uuid,
+        type: 'PUT',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: data,
+        success: function(data, status, xhr) {
+          removeProfile(this);
+          checkForRedirect();
+        },
+        error: function(response) {
+          M.toast({html: response.responseText, displayLength: 4500, classes: "red"})
+        }
+      });
+    }
   }
 </script>
