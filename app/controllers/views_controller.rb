@@ -11,6 +11,16 @@ class ViewsController < ApplicationController
     end 
   end
 
+  def update
+    view = View.find_by(profile_id: @profile.id, user_id: current_user.id)
+
+    if view.update(state: view_params[:state])
+      head :ok
+    else
+      render json: view.errors.full_messages.join(', '), status: unprocessable_entity
+    end 
+  end 
+
   private
 
   def set_profile
