@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/sign-in', to: 'sessions#new', as: 'sign-in'
   get '/auth/google_oauth2/callback', to: 'users#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'
-  resources :views, only: :create
+  resources :views, only: [:create, :update]
 
   resources :sessions, only: [:new, :destroy]
   resources :profiles, only: [:index, :show] do 
@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create] do 
     resources :profiles, only: [:new, :edit, :create, :update]
   end 
+
+  resources :interests, only: :index
 
 end
