@@ -5,13 +5,13 @@
         <div class="row">
           <div class="input-field col s12">
             <%= label_tag "Question 1:" %>
-            <%= text_field_tag :question1, nil, required: true %>
+            <%= text_field_tag :question1, nil, data: { length: 40 }, required: true %>
           </div>
         </div>
          <div class="row">
           <div class="input-field col s12">
             <%= label_tag "Question 2:" %>
-            <%= text_field_tag :question2, nil, required: true %>
+            <%= text_field_tag :question2, nil, data: { length: 40 }, required: true %>
           </div>
         </div>
         <div class="row">
@@ -24,3 +24,9 @@
       <% end %>
     </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('input#question1, input#question2').characterCounter();
+  });
+</script>

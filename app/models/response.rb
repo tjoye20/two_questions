@@ -5,6 +5,7 @@ class Response < ApplicationRecord
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :body 
   validates_uniqueness_of :uuid
+  validates_length_of :body, maximum: 70
 
   def self.create_question_responses(response_params)
     return unless Response.where(user_id: response_params[:user_id], question_id: [response_params[:question1_id], response_params[:question2_id]]).empty?

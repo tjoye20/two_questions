@@ -19,7 +19,7 @@
           <div class="input-field col s12">
             <%= label_tag "Question 1:" %><br>
             <p><%= @questions.first.second %></p>
-            <%= text_field_tag :response1, nil, required: true %>
+            <%= text_field_tag :response1, nil, data: { length: 70 }, required: true %>
             <%= hidden_field_tag :question1_id, @questions.first.first%>
           </div>
         </div>
@@ -27,7 +27,7 @@
           <div class="input-field col s12">
             <%= label_tag "Question 2:" %><br>
             <p><%= @questions.second.second %></p>
-            <%= text_field_tag :response2, nil, required: true %>
+            <%= text_field_tag :response2, nil, data: { length: 70 }, required: true %>
             <%= hidden_field_tag :question2_id, @questions.second.first%>
           </div>
         </div>
@@ -43,6 +43,7 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.carousel').carousel({duration: 320});
+    $('input#response1, input#response2').characterCounter();
+    $('.carousel').carousel({ duration: 320 });
   });
 </script>
