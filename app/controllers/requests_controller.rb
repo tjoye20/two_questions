@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: :update
-  before_action :set_profile_user, only: :show
+  before_action :set_request_user, only: :show
   before_action :set_profile, only: :update 
 
   def index
@@ -14,8 +14,11 @@ class RequestsController < ApplicationController
   end 
 
   def show
-    @request = Request.includes(:questions, :responses).where(requests: { profile_id: current_user.profile.id }, responses: { user_id: @profile_user.id })&.first
-  end 
+    @request = Request.includes(:questions, :responses).where(
+                requests: { profile_id: current_user.profile.id }, 
+                responses: { user_id: @request_user.id }
+              )&.first
+end 
 
   def create
     result = Requests::CreateProcess.call\
@@ -43,8 +46,8 @@ class RequestsController < ApplicationController
 
   private
 
-  def set_profile_user
-    @profile_user = User.includes(:profile).find_by_uuid(params[:id])
+  def set_request_user
+    @request_user = User.find_by_uuid(params[:id])
   end 
 
   def set_profile
