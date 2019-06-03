@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi, <%= @profile_owner.display_name %>!</h1>
+    <p>
+      <%= @requester.display_name %> submitted a response to your profile questions.<br>
+    </p>
+    <p>
+      To view the response, just follow this link: <%= @response_url %>.
+    </p>
+    <p>Thanks for using Two Questions and have a great day!</p>
+  </body>
+</html>
