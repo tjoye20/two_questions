@@ -9,6 +9,6 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, :uuid, :display_name 
 
   def conversations
-    Conversation.includes(:messages).where(sender_id: self.id).or.where(recipient_id: self.id).uniq
+    Conversation.includes(:messages).where(sender_id: self.id).or(Conversation.includes(:messages).where(recipient_id: self.id)).uniq
   end 
 end
