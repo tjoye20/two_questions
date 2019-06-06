@@ -2,12 +2,12 @@ class Messages::BroadcastProcess
   include Interactor::Organizer
 
   before do 
-    if [context.response_params, context.user_id, context.profile_id ].any?(&:blank?)
+    if [context.message, context.user_uuid, context.conversation_uuid ].any?(&:blank?)
       context.fail!(error: "Bad context in Messages::BroadcastProcess. Context: #{context}")
     end 
   end 
 
   organize Messages::Create,
-           Requests::Broadcast
+           Messages::Broadcast
 
 end 
