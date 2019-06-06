@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validate :create_uuid, on: :create
   validates_presence_of :email, :uuid, :display_name
   validates_uniqueness_of :email, :uuid, :display_name 
+
+  def conversations
+    Conversation.includes(:messages).where(sender_id: self.id).or.where(recipient_id: self.id).uniq
+  end 
 end
