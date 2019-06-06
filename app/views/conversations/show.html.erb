@@ -1,10 +1,22 @@
 <h1>Chat room</h1>
 
-<div id="messages">
+<div id="<%= @conversation.uuid %>">
   <%= render partial: "message", collection: @conversation.messages %>
 </div>
 
 <form>
   <label>Say something:</label><br>
-  <input type="text" data-behavior="room_speaker">
+  <input type="text" id="room_speaker" data-user-uuid="<%=current_user.uuid %>" data-conversation-uuid="<%=@conversation.uuid %>" data-user-uuid="<%=current_user.uuid %>">
+  <button class="btn" onclick="return broadcastMsg();">Send</button>
 </form>
+
+<script type="text/javascript">
+
+  function broadcastMsg() {
+    var elem = $("#room_speaker");
+
+    App.conversation.speak(elem.data('user-uuid'), elem.data('conversation-uuid'), elem.val());
+    elem.val('');
+    return false; //prevent button submission
+  }
+</script>

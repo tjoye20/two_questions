@@ -6,11 +6,11 @@ class BroadcastMessageJob < ApplicationJob
 
     payload = {
       conversation_uuid: conversation_uuid,
-      content: message.body,
+      message: render_message(message),
       sender: user_uuid
     }
     
-    ActionCable.server.broadcast("conversation-#{conversation_uuid}", message: render_message(message))
+    ActionCable.server.broadcast('conversations', payload)
   end
 
   private
