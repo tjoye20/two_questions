@@ -3,7 +3,7 @@ class Requests::Create
 
   before do 
     if context.user_id.blank? || context.profile_id.blank?
-      context.fail!(error: 'Bad')
+      context.fail!(error: "Bad context in Requests::Create. Context: #{context}")
     end 
   end 
 
