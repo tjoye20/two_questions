@@ -5,6 +5,6 @@ class ConversationsController < ApplicationController
   end 
 
   def show
-    @conversation = current_user.conversations.find_by_uuid(params[:conversation_uuid])
+    @conversation = Conversation.includes(:messages).find_by_uuid(params[:id])
   end
 end
