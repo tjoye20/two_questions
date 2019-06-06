@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   end 
 
   resources :interests, only: :index
+  resources :conversations, only: [:index, :show]
 end
