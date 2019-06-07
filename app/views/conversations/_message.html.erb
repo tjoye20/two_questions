@@ -1,3 +1,4 @@
 <div class=“message”>
-  <p><%= message.body %></p>
+  <!-- if the message is from the current user, pull-right. Else, pull-left. for chat room. -->
+  <p class="<%= message.user_id == current_user.id ? 'right' : 'left' %>"><%= message.body %></p>
 </div>
