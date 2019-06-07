@@ -19,10 +19,11 @@ class Conversations::Create
 
   private
 
+  #Someone makes a request to your PROFILE, so THEY are the USER. You are the one making the Requests#Update call.
+  #We're now checking to see if you, the USER, have approved THEIR profile.
+
   def do_the_users_approve_each_others_profiles?
     return false if context.request.rejected?
-    #Someone makes a request to your PROFILE, so THEY are the USER. You are the one making the Requests#Update call.
-    #We're now checking to see if you, the USER, have approved THEIR profile.
     Request.find_by(state: 'approved', user_id: context.request.profile.user.id, profile_id: context.request.user.profile.id).nil? ? false : true
   end 
 

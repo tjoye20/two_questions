@@ -2,7 +2,7 @@ class Messages::SetIntroduction
   include Interactor
 
   before do 
-    if context.request.blank? || context.conversation.blank?
+    if context.request.blank?
       context.fail!(error: "Bad context in Messages::SetIntroduction. Context: #{context}")
     end 
 
@@ -10,9 +10,14 @@ class Messages::SetIntroduction
   end 
 
   def call
+    return if context.conversation.blank?
     @profiles.each do |profile| 
       create_introduction(profile.questions)
     end 
+  end 
+
+  def rollback
+    context.conversation.messages.destroy_all
   end 
 
   private
@@ -29,13 +34,13 @@ class Messages::SetIntroduction
 
   def create_messages(question)
     #Question
-    Message.create(
+    Message.create!(
       conversation_id: context.conversation.id, 
       user_id: question.profile.user.id ,
       body: question.body
     )
     #Response
-    Message.create(
+    Message.create!(
       conversation_id: context.conversation.id, 
       user_id: context.request.user_id,
       body: Response.find_by(question_id: question.id, user_id: context.request.user_id).body
