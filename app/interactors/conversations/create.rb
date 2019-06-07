@@ -31,7 +31,7 @@ class Conversations::Create
     context.conversation = Conversation.new(sender_id: context.request.profile.user.id, recipient_id: context.request.user.id)
   
     unless context.conversation.save
-      context.fail!(error: 'Bad context in Conversations::Create. Failed to create conversation. Errors: ' + context.conversation.errors.join(', '))
+      context.fail!(error: 'Bad context in Conversations::Create. Failed to create conversation. Errors: ' + context.conversation.errors.full_messages.join(', '))
     end 
   end 
 end 

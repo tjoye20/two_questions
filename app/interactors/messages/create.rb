@@ -14,7 +14,7 @@ class Messages::Create
     @message = Message.new(user_id: context.user_id, conversation_id: context.conversation_id, body: context.message) 
     
     unless @message.save
-      context.fail!(error: 'Bad context in Messages::Create. Failed to create message. Errors: ' + @message.errors.join(', '))
+      context.fail!(error: 'Bad context in Messages::Create. Failed to create message. Errors: ' + @message.errors.full_messages.join(', '))
     else
       context.message_uuid = @message.uuid
     end 

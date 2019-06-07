@@ -11,7 +11,7 @@ class Requests::Create
     context.request = Request.new(user_id: context.user_id, profile_id: context.profile_id) 
     
     unless context.request.save
-      context.fail!(error: 'Bad context in Requests::Create. Failed to create requests. Errors: ' + context.request.errors.join(', '))
+      context.fail!(error: 'Bad context in Requests::Create. Failed to create requests. Errors: ' + context.request.errors.full_messages.join(', '))
     end
   end 
 
