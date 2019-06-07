@@ -35,12 +35,16 @@ end
   end 
 
   def update
-    @request.update(state: requests_param[:state])
-
-    if requests_param[:state] == 'approved'
-      redirect_to profile_path(@profile.uuid), notice: 'Approved! Now submit your responses to their questions.'
+    #Someone creates a request for your PROFILE, so THEY are the USER. 
+    #You/profile_id are the one making the Requests#Update call.
+    
+    result = UpdateRequestProcess.call(request_id: @request.id, request_state: requests_param[:state])
+    
+    if result.success?
+      redirect_to result.redirect_path, notice: result.notice
     else
-      redirect_to requests_path, notice: 'Rejected.'
+      flash[:alert] = result.error
+      redirect_back(fallback_location: root_path)
     end 
   end 
 
