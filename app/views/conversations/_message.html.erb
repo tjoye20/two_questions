@@ -1,4 +1,9 @@
-<div class=“message”>
-  <!-- if the message is from the current user, pull-right. Else, pull-left. for chat room. -->
-  <p class="<%= message.user_id == current_user.id ? 'right' : 'left' %>"><%= message.body %></p>
+ <div class="col m12 col s12">
+  <div class="<%= message.user_id == current_user.id ? 'box-blue' : 'box-gray'%>">
+    <img height='64' width="64" class="circle <%= message.user_id == current_user.id ? 'right' : 'left'%>" src=<%= message.user.image %>>
+    <p><%= message.body %></p>
+    <div>
+      <span class="date"><%= message.message_time %></span>
+    </div>
+  </div>
 </div>

@@ -6,7 +6,7 @@ class BroadcastMessageJob < ApplicationJob
 
     payload = {
       conversation_uuid: conversation_uuid,
-      message: render_message(message),
+      message: render_message(message, user_uuid),
       sender: user_uuid
     }
     
@@ -15,7 +15,7 @@ class BroadcastMessageJob < ApplicationJob
 
   private
 
-  def render_message(message)
-    ApplicationController.renderer.render(partial: 'conversations/message', locals: { message: message })
+  def render_message(message, user_uuid)
+    ApplicationController.renderer.render(partial: 'conversations/message', locals: { message: message, current_user: User.find_by_uuid(user_uuid) })
   end
 end
