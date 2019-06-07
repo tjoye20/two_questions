@@ -1,17 +1,20 @@
-<h1>Chat room</h1>
+<div class="container">
+  <h1>Chat room</h1>
+  <div class="row msg-container" id="<%= @conversation.uuid %>">
+    <%= render partial: "message", collection: @conversation.messages %>
+  </div>
 
-<div id="<%= @conversation.uuid %>">
-  <%= render partial: "message", collection: @conversation.messages %>
+  <div class="row">
+    <form style="display:inherit">
+      <div class="col m12 s12">
+        <input type="text" id="room_speaker" data-user-uuid="<%=current_user.uuid %>" data-conversation-uuid="<%=@conversation.uuid %>" data-user-uuid="<%=current_user.uuid %>" placeholder="Say something...">
+        <button type="submit" class="btn right chat-submit-button" onclick="return broadcastMsg();"><i class="material-icons">send</i></button>
+      </div>
+    </form>
+  </div>
 </div>
 
-<form>
-  <label>Say something:</label><br>
-  <input type="text" id="room_speaker" data-user-uuid="<%=current_user.uuid %>" data-conversation-uuid="<%=@conversation.uuid %>" data-user-uuid="<%=current_user.uuid %>">
-  <button class="btn" onclick="return broadcastMsg();">Send</button>
-</form>
-
 <script type="text/javascript">
-
   function broadcastMsg() {
     var elem = $("#room_speaker");
 

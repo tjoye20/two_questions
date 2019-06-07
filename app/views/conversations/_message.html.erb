@@ -1,4 +1,4 @@
- <div class="col m12 col s12">
+ <div class="col m12 s12">
   <div class="<%= message.user_id == current_user.id ? 'box-blue' : 'box-gray'%>">
     <img height='64' width="64" class="circle <%= message.user_id == current_user.id ? 'right' : 'left'%>" src=<%= message.user.image %>>
     <p><%= message.body %></p>
