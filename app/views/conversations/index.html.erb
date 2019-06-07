@@ -1,2 +1,28 @@
-<h1>Conversations#index</h1>
-<p>Find me in app/views/conversations/index.html.erb</p>
+<div class="row">
+  <div class="col s12">
+    <h3 class="center">Conversations</h3>
+    <table class="highlight">
+      <thead>
+      <tr>
+        <th></th>
+        <th colspan="2">Name</th>
+      </tr>
+    </thead>
+    <tbody>      
+      <% @conversations.each do |conversation| %> 
+        <tr class="profile-pictures">
+          <td>
+            <%= image_tag conversation.recipient.image, size: '80x80' %>
+          </td>
+          <td>
+            <%= conversation.recipient.display_name.split(' ').first %>
+          </td>
+          <td>
+            <%= link_to 'View Conversation', conversation_path(conversation.uuid) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+</div>
