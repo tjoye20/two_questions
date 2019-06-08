@@ -18,6 +18,13 @@ class RequestsController < ApplicationController
                 requests: { profile_id: current_user.profile.id }, 
                 responses: { user_id: @request_user.id }
               )&.first
+
+    if @request
+      @request.update(state: 'read')
+    else
+      flash[:alert] = 'That request does not exist.'
+      redirect_back(fallback_location: root_path)
+    end 
 end 
 
   def create
