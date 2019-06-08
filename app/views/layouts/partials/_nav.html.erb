@@ -7,11 +7,19 @@
         <li>
           <%= link_to 'Interests', interests_path %>
         </li>
-         <li>
-          <%= link_to 'Conversations', conversations_path %>
+        <li>
+          <a href="/requests">Requests 
+            <% if current_user.new_requests > 0 %>
+              <span class="new badge red"><%= current_user.new_requests %></span>
+            <% end %>
+          </a>
         </li>
         <li>
-          <%= link_to 'Requests', requests_path %>
+          <a href="/conversations">Conversations 
+            <% if current_user.new_conversations > 0 %>
+              <span class="new badge red"><%= current_user.new_conversations %></span>
+            <% end %>
+          </a>
         </li>
         <li>
           <%=link_to 'Sign out', logout_path %>
@@ -37,11 +45,19 @@
     <li>
       <%= link_to 'Interests', interests_path %>
     </li>
-     <li>
-          <%= link_to 'Conversations', conversations_path %>
-        </li>
     <li>
-      <%= link_to 'Requests', requests_path %>
+      <a href="/requests">Requests 
+        <% if current_user.new_requests > 0 %>
+          <span class="new badge red"><%= current_user.new_requests %></span>
+        <% end %>
+      </a>
+    </li>
+    <li>
+      <a href="/conversations">Conversations 
+        <% if current_user.new_conversations > 0 %>
+          <span class="new badge red"><%= current_user.new_conversations %></span>
+        <% end %>
+      </a>
     </li>
     <li>
       <%=link_to 'Sign out', logout_path%>

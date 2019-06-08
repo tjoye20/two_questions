@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.includes(profile: :questions).find_by_uuid(session[:user_uuid])
+    @current_user ||= User.includes(:requests, profile: :questions).find_by_uuid(session[:user_uuid])
   end
 end
