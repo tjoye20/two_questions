@@ -8,6 +8,7 @@
     <form style="display:inherit">
       <div class="col m12 s12">
         <input type="text" id="room_speaker" data-user-uuid="<%=current_user.uuid %>" data-conversation-uuid="<%=@conversation.uuid %>" data-user-uuid="<%=current_user.uuid %>" placeholder="Say something...">
+        <%= link_to 'Back', conversations_path, class: 'btn left grey' %>
         <button type="submit" class="btn right chat-submit-button" onclick="return broadcastMsg();"><i class="material-icons">send</i></button>
       </div>
     </form>

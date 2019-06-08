@@ -4,6 +4,7 @@ class CreateConversations < ActiveRecord::Migration[5.2]
       t.integer :sender_id, index: true, null: false
       t.integer :recipient_id, index: true, null: false
       t.string :uuid, index: true, null: false
+      t.string :state, null: false, default: :new
       t.timestamps
     end
   end

@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_010158) do
     t.integer "sender_id", null: false
     t.integer "recipient_id", null: false
     t.string "uuid", null: false
+    t.string "state", default: "new", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipient_id"], name: "index_conversations_on_recipient_id"
@@ -67,7 +68,6 @@ ActiveRecord::Schema.define(version: 2019_06_06_010158) do
     t.text "bio", null: false
     t.integer "race", null: false
     t.string "location", null: false
-    t.text "images", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
