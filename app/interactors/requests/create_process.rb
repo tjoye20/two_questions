@@ -8,7 +8,7 @@ class Requests::CreateProcess
   end 
 
   organize Requests::Create,
-           Requests::CreateResponse
+           Requests::CreateResponse,
            Requests::SendNotificationEmail
 
 end 
