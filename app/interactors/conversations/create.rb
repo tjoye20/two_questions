@@ -14,7 +14,7 @@ class Conversations::Create
   end 
 
   def rollback
-    context.conversation.destroy
+    context.conversation.destroy if context.conversation
   end
 
   private

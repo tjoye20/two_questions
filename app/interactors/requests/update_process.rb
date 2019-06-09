@@ -12,8 +12,8 @@ class Requests::UpdateProcess
   end 
 
   organize Requests::Update,
-           Conversations::Create
-           Requests::SetRedirectPath
+           Conversations::Create,
+           Requests::SetRedirectPath,
            Messages::SetIntroduction
 
 end 
