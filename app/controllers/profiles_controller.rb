@@ -1,14 +1,15 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
   before_action :check_if_profile_and_questions_exist, only: [:index, :show]
+  before_action :set_cloudfront_url, only: [:index, :show]
 
   def index
     gender_seeking = current_user.profile.gender_seeking_before_type_cast == 2 ? ['man', 'woman'] : current_user.profile.gender_seeking_before_type_cast
-    @profiles = Profile.includes(:user, :views).where("views.user_id IS NULL").references(:views).where(gender: gender_seeking).with_attached_images
+    @profiles = Profile.includes(:user, :views).where("views.user_id IS NULL").references(:views).where(gender: gender_seeking)
   end 
 
   def show
-    @profile = Profile.includes(:questions).with_attached_images.find_by_uuid(params[:id])
+    @profile = Profile.includes(:questions).find_by_uuid(params[:id])
     @questions = @profile.questions.pluck(:id, :body)
   end 
 
@@ -43,5 +44,9 @@ class ProfilesController < ApplicationController
       :gender, :gender_seeking, :bio, 
       :race, :location, images: []
     )
+  end 
+
+  def set_cloudfront_url
+    @cloud_front_url = ENV['AMAZON_CLOUDFRONT_DOMAIN']
   end 
 end

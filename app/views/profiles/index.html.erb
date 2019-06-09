@@ -5,7 +5,7 @@
     <% @profiles.each do |profile| %>
       <a class="carousel-item" data-uuid="<%=profile.uuid%>" href="<%= profile_path(profile.uuid)%>">
         <h4 class="center black-text"><%=profile.user.display_name.split(' ')[0]%></h4>
-        <%= image_tag profile.images.first %>
+        <img src="https://<%=@cloud_front_url %>/<%= profile.images.first %>" />
       </a>
     <% end %>
   </div>
