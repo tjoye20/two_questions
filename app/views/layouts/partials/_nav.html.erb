@@ -2,7 +2,9 @@
   <nav role="navigation" class="blue">
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">Two Questions</a>
-      <a href="#" data-target="mobile-links" class="sidenav-trigger" onclick="$('.sidenav').sidenav('open');return false"><i class="material-icons">menu</i></a>
+      <a href="#" data-target="mobile-links" class="sidenav-trigger" onclick="$('.sidenav').sidenav('open');return false">
+        <i class="material-icons">menu</i>
+      </a>
       <ul class="right hide-on-med-and-down">
         <li>
           <%= link_to 'Interests', interests_path %>
@@ -64,3 +66,8 @@
     </li>
   </ul>
 <% end %>
+<script type="text/javascript">
+  if($(".new.badge").length > 1) {
+    $(".sidenav-trigger").css("color", "red");
+  }
+</script>
