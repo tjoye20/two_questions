@@ -22,7 +22,7 @@ class Request < ApplicationRecord
   private
 
   def restrict_multiple_requests
-    unless Request.where(user_id: self.user_id).or(Request.where(profile_id: Profile.find_by_user_id(self.user_id).id)).nil?
+    unless Request.where(user_id: self.user_id, profile_id: self.profile_id).or(Request.where(user_id: Profile.find_by_user_id(self.profile_id).user.id, profile_id: self.profile_id)).blank?
       self.errors.add(:request, "already exists between you and this user.\nCheck your requests.")
     end
   end 
