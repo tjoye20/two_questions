@@ -10,6 +10,12 @@ class Request < ApplicationRecord
   validate :restrict_multiple_requests, on: :create
 
   state_machine :state, initial: :new do
+    state :read 
+
+    event :read do 
+      transition new: :read
+    end 
+
     event :reject do
       transition any => :rejected
     end
@@ -22,7 +28,7 @@ class Request < ApplicationRecord
   private
 
   def restrict_multiple_requests
-    unless Request.where(user_id: self.user_id, profile_id: self.profile_id).or(Request.where(user_id: Profile.find_by_user_id(self.profile_id).user.id, profile_id: self.profile_id)).blank?
+    unless Request.where(user_id: self.user_id, profile_id: self.profile_id).or(Request.where(user_id: Profile.find_by_user_id(self.profile_id)&.user&.id, profile_id: self.profile_id)).blank?
       self.errors.add(:request, "already exists between you and this user.\nCheck your requests.")
     end
   end 
