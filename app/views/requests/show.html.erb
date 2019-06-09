@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col s12">
     <div class="row">
-      <p>Responses from: <%= @profile_user.display_name.split(' ').first %> </p>
-      <%= image_tag @profile_user.image, size: '80x80' %>
+      <p>Responses from: <%= @request_user.display_name.split(' ').first %> </p>
+      <%= image_tag @request_user.image, size: '80x80' %>
     </div>
   </div>
 </div>
@@ -23,9 +23,9 @@
   <div class="col s12">
     <div class="row">
       <div class="center">
-        <%= link_to 'Not Interested', "/profiles/#{@profile_user.profile.id}/requests/#{@request.uuid}?" + { state: 'rejected'}.to_param, method: :put, class: 'waves-effect waves-light btn red'  %>
+        <%= link_to 'Not Interested', "/profiles/#{@request_user.profile.id}/requests/#{@request.uuid}?" + { state: 'rejected'}.to_param, method: :put, class: 'waves-effect waves-light btn red'  %>
 
-        <%= link_to 'Interested', "/profiles/#{@profile_user.profile.id}/requests/#{@request.uuid}?" + { state: 'approved'}.to_param, method: :put, class: 'waves-effect waves-light btn'  %>
+        <%= link_to 'Interested', "/profiles/#{@request_user.profile.id}/requests/#{@request.uuid}?" + { state: 'approved'}.to_param, method: :put, class: 'waves-effect waves-light btn'  %>
       </div>
     </div>
   </div>
