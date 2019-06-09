@@ -20,7 +20,7 @@ class RequestsController < ApplicationController
               )&.first
 
     if @request
-      @request.update(state: 'read')
+      @request.read
     else
       flash[:alert] = 'That request does not exist.'
       redirect_back(fallback_location: root_path)
@@ -45,7 +45,7 @@ end
     #Someone creates a request for your PROFILE, so THEY are the USER. 
     #You/profile_id are the one making the Requests#Update call.
     
-    result = UpdateRequestProcess.call(request_id: @request.id, request_state: requests_param[:state])
+    result = Requests::UpdateProcess.call(request_id: @request.id, request_state: requests_param[:state])
     
     if result.success?
       redirect_to result.redirect_path, notice: result.notice
@@ -58,7 +58,7 @@ end
   private
 
   def set_request_user
-    @request_user = User.find_by_uuid(params[:id])
+    @request_user = User.includes(:profile).find_by_uuid(params[:id])
   end 
 
   def set_profile
