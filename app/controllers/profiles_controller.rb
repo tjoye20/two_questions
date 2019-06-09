@@ -13,14 +13,14 @@ class ProfilesController < ApplicationController
   end 
 
   def create
-    profile = Profile.new(profile_params.merge({user_id: current_user.id}))
-    
-    if profile.save
-      redirect_to new_profile_question_path(profile.uuid), notice: 'Profile created. Now create your profile questions.'
+    result = Profiles::CreateProcess.call(profile_params: profile_params.merge({user_id: current_user.id}))
+
+    if result.success?
+      redirect_to new_profile_question_path(result.profile.uuid), notice: 'Profile created. Now create your profile questions.'
     else
-      flash[:alert] = profile.errors.full_messages.join(', ')
+      flash[:alert] = result.error
       redirect_back(fallback_location: root_path)
-    end 
+    end
   end 
 
   def update
