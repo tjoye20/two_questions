@@ -5,11 +5,9 @@ class Profile < ApplicationRecord
   has_many :views, dependent: :destroy
   has_many :requests, dependent: :destroy
 
-  has_many_attached :images
-
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :gender, :gender_seeking, 
-                        :bio, :race, :location
+                        :bio, :race, :location, :images
   validates_uniqueness_of :uuid 
 
   enum gender: { man: 0, woman: 1, 'non-binary': 3 }
