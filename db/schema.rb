@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_010158) do
     t.text "bio", null: false
     t.integer "race", null: false
     t.string "location", null: false
-    t.string "images", default: [], null: false, array: true
+    t.string "images", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"

@@ -7,7 +7,7 @@ class Profile < ApplicationRecord
 
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :gender, :gender_seeking, 
-                        :bio, :race, :location, :images
+                        :bio, :race, :location
   validates_uniqueness_of :uuid 
 
   enum gender: { man: 0, woman: 1, 'non-binary': 3 }
