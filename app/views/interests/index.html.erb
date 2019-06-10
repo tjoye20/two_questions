@@ -6,7 +6,7 @@
       <tr>
         <th></th>
         <th>Name</th>
-        <th>Status</th>
+        <th colspan="2">Bio</th>
         <th>Remove</th>
       </tr>
     </thead>
@@ -18,6 +18,9 @@
           </td>
           <td>
             <%= profile.user.display_name.split(' ').first %>
+          </td>
+          <td>
+            <%= profile.bio %>
           </td>
           <td>
             <% if profile.user_submitted_response(current_user.id) %>
