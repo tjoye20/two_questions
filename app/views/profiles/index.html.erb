@@ -5,11 +5,11 @@
     <% @profiles.each do |profile| %>
       <a class="carousel-item" data-uuid="<%=profile.uuid%>" href="<%= profile_path(profile.uuid)%>">
         <h4 class="center black-text"><%=profile.user.display_name.split(' ')[0]%></h4>
-        <img src="https://<%=@cloud_front_url %>/<%= profile.images.first %>" />
         <p class="center black-text"><%= profile.location %></p>
+        <img src="https://<%=@cloud_front_url %>/<%= profile.images.first %>" />
       </a>
     <% end %>
-  </div>
+  </div><br><br>
   <div class="center">
     <a class="waves-effect waves-light btn" onclick="updateView('rejected', $('a.carousel-item.active').attr('data-uuid'));$('.carousel').carousel('next')">Not interested</a>
     <a class="waves-effect waves-light btn" onclick="updateView('approved', $('a.carousel-item.active').attr('data-uuid'));$('.carousel').carousel('next');">Interested</a>
