@@ -6,6 +6,7 @@
       <a class="carousel-item" data-uuid="<%=profile.uuid%>" href="<%= profile_path(profile.uuid)%>">
         <h4 class="center black-text"><%=profile.user.display_name.split(' ')[0]%></h4>
         <img src="https://<%=@cloud_front_url %>/<%= profile.images.first %>" />
+        <p class="center black-text"><%= profile.location %></p>
       </a>
     <% end %>
   </div>

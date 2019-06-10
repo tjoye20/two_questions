@@ -10,6 +10,8 @@ class Profile < ApplicationRecord
                         :bio, :race, :location
   validates_uniqueness_of :uuid 
 
+  before_create :set_location
+
   enum gender: { man: 0, woman: 1, 'non-binary': 3 }
   enum gender_seeking: { men: 0, women: 1, both: 2}
   enum race: { 
@@ -27,4 +29,11 @@ class Profile < ApplicationRecord
     self.questions << Question.new(body: question_params[:question2])
   end 
 
+  private
+
+  def set_location
+    result = Geocoder.search(self.location).select { |result| result.country == 'USA'}
+
+    self.location = result.blank? ? self.location : "#{result.first.data['address']['county']}, #{result.first.data['address']['state']}"
+  end 
 end

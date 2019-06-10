@@ -1,10 +1,11 @@
 <div class="carousel">
   <h4 class="center black-text"><%=@profile.user.display_name.split(' ')[0]%></h4>
-  <p><%= @profile.bio %> </p>
+  <p class="center black-text"><%= @profile.bio %> </p>
   <% @profile.images.each do |image| %>
     <img src="https://<%=@cloud_front_url %>/<%=image%>" class='carousel-item'/>
   <% end %>
-</div><br>
+</div>
+<p class="center black-text"><%= @profile.location %></p>
 <div class="center">
   <a class="waves-effect waves-light btn" onclick="$('.carousel').carousel('next')">
     <i class="material-icons">fast_rewind</i>
