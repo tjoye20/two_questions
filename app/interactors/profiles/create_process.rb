@@ -7,7 +7,8 @@ class Profiles::CreateProcess
     end 
   end 
 
-  organize Profiles::UploadImagesToS3,
-           Profiles::Create
+  organize Profiles::WriteImagesToDisk,
+           Profiles::Create,
+           Profiles::SendImagesToJob
 
 end 

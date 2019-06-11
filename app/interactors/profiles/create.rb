@@ -2,10 +2,9 @@ class Profiles::Create
   include Interactor
 
   before do 
-    if context.profile_params.blank? || context.images_s3_keys.blank?
+    if context.profile_params.blank?
       context.fail!(error: "Bad context in Profiles::Create. Context: #{context}")
     end 
-    update_images_array
   end 
 
   def call
@@ -18,11 +17,5 @@ class Profiles::Create
 
   def rollback
     context.profile.destroy
-  end 
-
-  private
-
-  def update_images_array
-    context.profile_params[:images] = context.images_s3_keys
   end 
 end 

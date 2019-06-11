@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
   end 
 
   def create
-    result = Profiles::CreateProcess.call(profile_params: profile_params.merge({user_id: current_user.id}))
+    result = Profiles::CreateProcess.call(profile_params: profile_params.merge({user_id: current_user.id}), profile_params_images: profile_params_images)
 
     if result.success?
       redirect_to new_profile_question_path(result.profile.uuid), notice: 'Profile created. Now create your profile questions.'
@@ -42,8 +42,12 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(
       :gender, :gender_seeking, :bio, 
-      :race, :location, images: []
+      :race, :location
     )
+  end 
+
+  def profile_params_images
+    params.require(:profile).permit(images: [])
   end 
 
   def set_cloudfront_url
