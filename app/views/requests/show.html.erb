@@ -25,7 +25,7 @@
       <div class="center">
         <%= link_to 'Not Interested', "/profiles/#{@request_user.profile.id}/requests/#{@request.uuid}?" + { state: 'rejected'}.to_param, method: :put, class: 'waves-effect waves-light btn red'  %>
 
-        <%= link_to 'Interested', "/profiles/#{@request_user.profile.id}/requests/#{@request.uuid}?" + { state: 'approved'}.to_param, method: :put, class: 'waves-effect waves-light btn'  %>
+        <%= link_to 'Interested', "/profiles/#{@request_user.profile.id}/requests/#{@request.uuid}?" + { state: 'approved'}.to_param, method: :put, class: 'waves-effect waves-light btn green'  %>
       </div>
     </div>
   </div>
