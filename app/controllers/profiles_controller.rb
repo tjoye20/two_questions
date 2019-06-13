@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
   end 
 
   def show
-    @profile = Profile.includes(:questions).find_by_uuid(params[:id])
+    @profile = Profile.cached_with_questions.find_by_uuid(params[:id])
     @questions = @profile.questions.pluck(:id, :body)
   end 
 

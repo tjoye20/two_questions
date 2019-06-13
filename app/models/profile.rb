@@ -20,6 +20,10 @@ class Profile < ApplicationRecord
     other: 7 
   }
 
+  def self.cached_with_questions
+    Rails.cache.fetch('profiles_with_questions', force: true) { Profile.includes(:questions) }
+  end 
+
   def self.cached_users_and_views
     Rails.cache.fetch('profiles_with_users_and_views', force: true) { Profile.includes(:user, :views) }
   end 
