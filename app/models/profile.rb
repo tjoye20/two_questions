@@ -28,12 +28,12 @@ class Profile < ApplicationRecord
     Rails.cache.write('profiles_with_questions', Profile.includes(:questions))
   end
 
-  def self.cached_users_and_views
-    Rails.cache.fetch('profiles_with_users_and_views', force: true) { Profile.includes(:user, :views) }
+  def self.cached_users_views_and_requests
+    Rails.cache.fetch('profiles_with_users_and_views', force: true) { Profile.includes(:user, :views, :requests) }
   end 
 
-  def self.update_cached_users_and_views
-    Rails.cache.write('profiles_with_users_and_views', Profile.includes(:user, :views))
+  def self.update_cached_users_views_and_requests
+    Rails.cache.write('profiles_with_users_and_views', Profile.includes(:user, :views, :requests))
   end  
 
   def user_submitted_response(user_id)

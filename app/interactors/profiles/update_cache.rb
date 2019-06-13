@@ -8,6 +8,6 @@ class Profiles::UpdateCache
   end 
 
   def call
-    Profile.update_cached_users_and_views
+    Profile.update_cached_users_views_and_requests
   end 
 end 
