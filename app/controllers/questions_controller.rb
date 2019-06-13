@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
     @profile.create_questions(question_params)
 
     if @profile.questions.present?
+      Profile.update_cached_with_questions
       redirect_to profiles_path, notice: 'Questions successfully saved.'
     else    
       flash[:alert] = 'Questions not successfully saved. Please try again.'
