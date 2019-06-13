@@ -2,16 +2,22 @@
 
 * ...
 ```
-#Create DB and run migrations
+# Create DB and run migrations
 rails db:migrate:reset
 
-#Install gems
+# Install gems
 bundle install
 
-#Start Memcache
+# Start Redis
+brew services start redis
+
+# Start Memcache
 brew install memcached
 brew services start memcached
 
-#Start server
+# Turn on caching
+rails dev:cache
+
+# Start server
 rails s
 ```
