@@ -1,28 +1,17 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+# Two Questions
 
 * ...
 ```
-#Add migrations to create files to atttach
-rails active_storage:install
+#Create DB and run migrations
+rails db:migrate:reset
+
+#Install gems
+bundle install
+
+#Start Memcache
+brew install memcached
+brew services start memcached
+
+#Start server
+rails s
 ```

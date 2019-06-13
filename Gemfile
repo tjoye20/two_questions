@@ -39,7 +39,7 @@ gem 'state_machines-activerecord'
 gem "interactor-rails", "~> 2.0"
 gem "geocoder"
 gem 'sidekiq'
-
+gem 'dalli'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

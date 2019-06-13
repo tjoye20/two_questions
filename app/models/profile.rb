@@ -20,6 +20,14 @@ class Profile < ApplicationRecord
     other: 7 
   }
 
+  def self.cached_users_and_views
+    Rails.cache.fetch('profiles_with_users_and_views', force: true) { Profile.includes(:user, :views) }
+  end 
+
+  def self.update_cache
+    Rails.cache.write('profiles_with_users_and_views', Profile.includes(:user, :views))
+  end 
+
   def user_submitted_response(user_id)
     self.questions.first.responses.find_by(user_id: user_id).present?
   end 

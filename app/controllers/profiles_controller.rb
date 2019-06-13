@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 
   def index
     gender_seeking = current_user.profile.gender_seeking_before_type_cast == 2 ? ['man', 'woman'] : current_user.profile.gender_seeking_before_type_cast
-    @profiles = Profile.includes(:user, :views).where("views.user_id != #{current_user.id}").references(:views).where(gender: gender_seeking)
+    @profiles = Profile.cached_users_and_views.where("views.user_id != #{current_user.id}").references(:views).where(gender: gender_seeking)
   end 
 
   def show
