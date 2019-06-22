@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi, <%= @profile.user.display_name %>!</h1>
+    <p>
+      <%= @user.display_name.split(' ').first %> liked your profile.<br>
+    </p>
+    <p>
+      To view their profile and submit a response to their questions, click this link: <%=  %>.
+    </p>
+    <p>Thank you for using Two Questions and have a great day!</p>
+  </body>
+</html>

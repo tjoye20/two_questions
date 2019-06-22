@@ -5,6 +5,7 @@ class ViewsController < ApplicationController
     view = View.new(user_id: current_user.id, profile_id: @profile.id, state: view_params[:state])
 
     if view.save
+      ApprovedViewNotificationJob.perform_later(profile_id, current_user.id) if view_params[:state] == 'approved'
       head :created
     else
       render json: view.errors.full_messages.join(', '), status: :unprocessable_entity
