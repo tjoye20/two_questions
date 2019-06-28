@@ -6,10 +6,10 @@ class ProfilesController < ApplicationController
   def index
     gender_seeking = current_user.profile.gender_seeking_before_type_cast == 2 ? ['man', 'woman'] : current_user.profile.gender_seeking_before_type_cast
     @profiles = Profile.cached_users_views_and_requests
-                       .where.not(id: current_user.profile.id)
-                       .where("views.user_id != #{current_user.id} OR views.user_id IS NULL").references(:views)
-                       .where("requests.profile_id != #{current_user.profile.id} OR requests.profile_id IS NULL").references(:profiles)
-                       .where(gender: gender_seeking)
+                  .where.not(id: current_user.profile.id)
+                  .where("views.user_id != #{current_user.id} OR views.user_id IS NULL").references(:views)
+                  .where("requests.profile_id != #{current_user.profile.id} OR requests.profile_id IS NULL").references(:profiles)
+                  .where(gender: gender_seeking, looking_for: current_user.profile.looking_for)
   end 
 
   def show
