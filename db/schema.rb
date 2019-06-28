@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_010158) do
     t.integer "gender_seeking", null: false
     t.text "bio", null: false
     t.integer "race", null: false
+    t.integer "looking_for", null: false
     t.string "location", null: false
     t.string "images", default: [], array: true
     t.datetime "created_at", null: false

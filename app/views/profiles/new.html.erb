@@ -113,13 +113,36 @@
           </div>
         </div>
         <div class="row">
+          <div class="input-field col s12">
+            <%= f.label :looking_for, "What Relationship type are you looking for?:" %><br><br>
+             <span>
+              <label for="dating">
+                <input id="dating" name="profile[looking_for]" type="radio" value="dating" required/>
+                <span>Dating Relationships</span>
+              </label>
+            </span>
+            <span>
+              <label for="friends">
+                <input id="friends" name="profile[looking_for]" type="radio" value="friends" required/>
+                <span>Friendships</span>
+              </label>
+            </span>
+            <span>
+              <label for="either">
+                <input id="either" name="profile[looking_for]" type="radio" value="either" required/>
+                <span>Either one</span>
+              </label>
+            </span>
+          </div>
+        </div>
+        <div class="row">
           <div class="file-field input-field col s12">
             <div class="btn blue">
               <span>File</span>
               <%= f.file_field :images, required: true, multiple: true %>
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" placeholder="Upload one or more files">
+              <input class="file-path validate" type="text" placeholder="Upload pictures for your profile">
             </div>
           </div>
         </div>

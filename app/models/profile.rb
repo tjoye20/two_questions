@@ -7,7 +7,7 @@ class Profile < ApplicationRecord
 
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :gender, :gender_seeking, 
-                        :bio, :race, :location
+                        :bio, :race, :location, :looking_for
   validates_uniqueness_of :uuid 
 
   before_create :set_location
@@ -19,6 +19,7 @@ class Profile < ApplicationRecord
     'native american': 4, 'pacific islander': 5, 'mixed race': 6, 
     other: 7 
   }
+  enum looking_for: { dating: 0, relationships: 1, either: 2 }
 
   def self.cached_with_questions
     Rails.cache.fetch('profiles_with_questions', force: true) { Profile.includes(:questions) }

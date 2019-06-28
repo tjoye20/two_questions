@@ -7,6 +7,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.integer :gender_seeking, null: false
       t.text :bio, null: false
       t.integer :race, null: false
+      t.integer :looking_for, null: false
       t.string :location, null: false
       t.string :images, array: true, default: []
 
