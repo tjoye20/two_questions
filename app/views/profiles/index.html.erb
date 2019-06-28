@@ -10,11 +10,8 @@
       </a>
     <% end %>
   </div>
-  <div class="center">
-    <p>Click the picture to view their profile.</p>
-  </div>
   <br><br>
-  <div class="center">
+  <div id="approval-btns" class="center">
     <a class="waves-effect waves-light btn red" onclick="updateView('rejected', $('a.carousel-item.active').attr('data-uuid'));$('.carousel').carousel('next')">Not interested</a>
     <a class="waves-effect waves-light btn green" onclick="updateView('approved', $('a.carousel-item.active').attr('data-uuid'));$('.carousel').carousel('next');">Interested</a>
   </div>
