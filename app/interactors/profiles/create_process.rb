@@ -9,6 +9,6 @@ class Profiles::CreateProcess
 
   organize Profiles::UploadImagesToS3,
            Profiles::Create,
-           Profiles::UpdateCache
+           UpdateCache
 
 end 
