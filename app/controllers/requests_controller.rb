@@ -8,7 +8,7 @@ class RequestsController < ApplicationController
     @users = User.where(id: user_response_ids)
 
     if @users.empty?
-      flash[:notice] = 'You do not have any responses right now.'
+      flash[:alert] = 'You do not have any requests right now.'
       redirect_back(fallback_location: root_path)
     end 
   end 
