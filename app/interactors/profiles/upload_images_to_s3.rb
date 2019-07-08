@@ -10,7 +10,7 @@ class Profiles::UploadImagesToS3
   def call
     context.images_s3_keys = []
     context.profile_params[:images].each do |image_file|
-      s3_key = (Rails.env == 'development') ? "development/#{SecureRandom.uuid}" : "production/#{SecureRandom.uuid}"
+      s3_key = "#{ENV['AMAZON_CLOUDFRONT_ENV']}/#{SecureRandom.uuid}"
       file = open(image_file.tempfile.path) { |f| f.read }
 
       unless S3_BUCKET.put_object({ body: file, key: s3_key })
