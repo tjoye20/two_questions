@@ -5,7 +5,7 @@ class Question < ApplicationRecord
   validate :create_uuid, on: :create
   validates_presence_of :uuid, :body, :state
   validates_uniqueness_of :uuid 
-  validates_length_of :body, maximum: 40
+  validates_length_of :body, maximum: 50
 
   state_machine :state, initial: :active do 
     event :archive do 
