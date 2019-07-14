@@ -51,6 +51,6 @@ class Profile < ApplicationRecord
   def set_location
     result = Geocoder.search(self.location).select { |result| result.country == 'USA'}
 
-    self.location = result.blank? ? self.location : "#{result.first.data['address']['county']}, #{result.first.data['address']['state']}"
+    self.location = result.blank? ? self.location : "#{result.first.data['address']['city']}, #{result.first.data['address']['state']}"
   end 
 end
