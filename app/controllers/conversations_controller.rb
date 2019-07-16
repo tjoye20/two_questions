@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
     @conversations = current_user.conversations
 
     if @conversations.empty?
-      redirect_to root_path, notice: 'You do not have any conversations right now.'
+      redirect_to root_path, alert: 'You do not have any conversations right now.'
     end
   end 
 

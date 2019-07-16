@@ -19,7 +19,7 @@ class Profile < ApplicationRecord
     'native american': 4, 'pacific islander': 5, 'mixed race': 6, 
     other: 7 
   }
-  enum looking_for: { dating: 0, relationships: 1 }
+  enum looking_for: { dating: 0, friends: 1 }
 
   def self.cached_with_questions
     Rails.cache.fetch('profiles_with_questions', force: true) { Profile.includes(:questions) }
