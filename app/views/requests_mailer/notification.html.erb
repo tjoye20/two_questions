@@ -6,7 +6,7 @@
   <body>
     <h1>Hi, <%= @profile_owner.display_name %>!</h1>
     <p>
-      <%= @requester.display_name %> submitted a response to your profile questions.<br>
+      <%= @requester.display_name.split(" ").first %> submitted a response to your profile questions.<br>
     </p>
     <p>
       To view their response, <a href="<%= @response_url %>" target="_blank">click here</a>.
