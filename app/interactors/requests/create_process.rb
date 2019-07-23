@@ -10,6 +10,6 @@ class Requests::CreateProcess
   organize Requests::Create,
            Requests::CreateResponse,
            Requests::SendNotificationEmail,
-           UpdateCache
+           Profiles::UpdateCachedUsersViewsAndRequests
 
 end 

@@ -1,4 +1,4 @@
-class UpdateCache
+class Profiles::UpdateCachedUsersViewsAndRequests
   include Interactor
 
   def call
