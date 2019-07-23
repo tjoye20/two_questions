@@ -22,11 +22,11 @@ class Profile < ApplicationRecord
   enum looking_for: { dating: 0, friends: 1 }
 
   def self.cached_with_questions
-    Rails.cache.fetch('profiles_with_questions', force: true) { Profile.includes(:questions) }
+    Rails.cache.fetch('profiles_with_questions', force: true) { Profile.joins(:questions).includes(:questions) }
   end 
 
   def self.update_cached_with_questions
-    Rails.cache.write('profiles_with_questions', Profile.includes(:questions))
+    Rails.cache.write('profiles_with_questions', Profile.joins(:questions).includes(:questions))
   end
 
   def self.cached_users_views_and_requests
