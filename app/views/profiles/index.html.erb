@@ -31,10 +31,15 @@
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data: data,
         success: function(response) {
-          M.toast({html: 'Added to your Interests', displayLength: 4500, classes: "green"})
+          if (state == 'approved') {
+            M.toast({html: 'Added to your Interests', displayLength: 4500, classes: "green"});
+          } 
+          else {
+            M.toast({html: 'Not interested.', displayLength: 4500, classes: "red"});
+          }
         },
         error: function(response) {
-          M.toast({html: response.responseText, displayLength: 4500, classes: "red"})
+          M.toast({html: response.responseText, displayLength: 4500, classes: "red"});
         }
       });
     }
